@@ -34,6 +34,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
+  ColorPalette colorPalette = ColorPalette();
 
   @override
   Widget build(BuildContext context) {
@@ -41,9 +42,11 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Weather App"),
+        centerTitle: true,
+        backgroundColor: colorPalette.blue.withOpacity(1.0),
       ),
       body: Container(
-        color: Colors.amber,
+        color: colorPalette.blue.withOpacity(1.0),
       )
 
     );
