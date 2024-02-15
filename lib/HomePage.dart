@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:weatherapp/colors.dart';
+import 'package:weatherapp/colours.dart';
 
 
 
@@ -14,15 +14,16 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
-  ColorPalette colorPalette = ColorPalette();
+  ColourPalette colourPalette = ColourPalette();
+  Color colourScheme = Color(0x00000000);
 
-
+  int temperatureInCelsius = 40;
 
 
   Card weatherDetails()
   {
     return  Card(
-      color: colorPalette.blue.withOpacity(1.0),
+      color: colourScheme,
       child: const Center(
           child: Column(
             children: [
@@ -41,31 +42,25 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  Card weekForcast(int index)
+  Card weekForecast(int index)
   {
     return Card(
-      child: Center(child: Text("$index"), ),
       color: Colors.black,
+      child: Center(child: Text("$index"), ),
     );
   }
+
+
+
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: colorPalette.lightBlue.withOpacity(1.0),
-        body: SingleChildScrollView(
-          child: Container(
-            child: Column(
-              children: [
-                weatherDetails(),
-
-                SizedBox(height: 15,),
-
-
-              ],
-            )
-          ),
-        )
+      appBar: AppBar(
+        backgroundColor: colourScheme,
+      ),
 
     );
   }

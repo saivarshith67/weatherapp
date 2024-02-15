@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class ColorPalette{
+class ColourPalette{
   final blue = const Color(0x903abfff);
   final lightBlue = const Color(0x90a8edfc);
   final darkBlue = const Color(0x902d3eb0);
