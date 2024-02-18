@@ -100,4 +100,8 @@ flutter:
         - asset: assets/fonts/Inter-SemiBold.ttf
           weight: 900
 
+    - family: InterMedium
+      fonts:
+        - asset: assets/fonts/Inter-Medium.ttf
+
 

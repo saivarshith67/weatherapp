@@ -14,52 +14,21 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
-  ColourPalette colourPalette = ColourPalette();
-  Color colourScheme = Color(0x00000000);
-
-  int temperatureInCelsius = 40;
-
-
-  Card weatherDetails()
-  {
-    return  Card(
-      color: colourScheme,
-      child: const Center(
-          child: Column(
-            children: [
-              SizedBox(height: 20,),
-              Text(
-                  "City Name",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontFamily: 'InterSemiBold',
-                    fontSize: 25
-                  ),
-
-
-              )
-            ],)),
-    );
-  }
-
-  Card weekForecast(int index)
-  {
-    return Card(
-      color: Colors.black,
-      child: Center(child: Text("$index"), ),
-    );
-  }
-
-
-
-
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: colourPalette.lightBlue.withOpacity(1.0),
       appBar: AppBar(
-        backgroundColor: colourScheme,
+        backgroundColor: ColourPalette().blue.withOpacity(1),
+        title: const  Text(
+          "City Name",
+          style: TextStyle(
+            fontFamily: "InterSemibold",
+            color: Colors.white,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
+        centerTitle: true,
       ),
 
     );
