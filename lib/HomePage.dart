@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:weatherapp/FrostedGlassWidget.dart';
 import 'package:weatherapp/colours.dart';
 
 
@@ -34,21 +35,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
         centerTitle: true,
       ),
-      body: Stack(
-        children: [
-
-          Container(
-            child: ClipRect(
-              child: BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: ColourPalette().lightBlue.withOpacity(1)
-                    ),),),),
-          ),
-
-        ],
-      )
+      body: FrostedGlassWidget(),
+      backgroundColor: ColourPalette().lightBlue.withOpacity(1.0),
 
     );
   }
