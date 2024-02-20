@@ -18,8 +18,8 @@ class FrostedGlassWidget extends StatelessWidget{
       child: ClipRect(
 
         child: Container(
-          width: 100,
-          height: 150,
+          width: 150,
+          height: 75,
           color: Colors.transparent,
           child: Stack(
             children: [
@@ -37,7 +37,7 @@ class FrostedGlassWidget extends StatelessWidget{
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                     colors: [
-                      Colors.white.withOpacity(0.25),
+                      Colors.white.withOpacity(0.35),
                       Colors.white.withOpacity(0.15),
                     ]
                   )
