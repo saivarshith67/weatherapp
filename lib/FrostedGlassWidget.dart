@@ -1,20 +1,24 @@
 import 'dart:ui';
-import 'colours.dart';
+import 'coloursAndStyles.dart';
 import 'package:flutter/material.dart';
 
 
 class FrostedGlassWidget extends StatelessWidget{
-  // final Widget child;
+  final double height;
+  final double width;
+  FrostedGlassWidget({
+    this.width = 100,
+    this.height = 150,
+});
 
-  // FrostedGlassWidget({super.key, required this.child});
 
 
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 100,
-      height: 150,
+      width: width,
+      height: height,
       child: ClipRect(
 
         child: Container(
