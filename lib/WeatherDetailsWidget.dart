@@ -22,20 +22,54 @@ class WeatherDetailsWidget extends StatelessWidget {
               bottomRight: Radius.circular(30.0),
             ),
           ),
-          child: const Column(
+          child: Column(
             children: [
-              Text(
+              const Text(
                   "Date",
                   style: TextStyle(fontFamily: "InterSemiBold",color: Colors.white, fontSize: 15.0),
               ),
               //Icon
-              SizedBox(height: 230,),
-              Text("Temperature",style: TextStyle(fontFamily: "InterSemiBold",fontWeight: FontWeight.w800,fontSize: 45,color: Colors.white),),
-              SizedBox(height: 20,),
-              Text("Temperature details",style: TextStyle(fontFamily: "InterRegular",fontWeight: FontWeight.w500,fontSize: 25,color: Colors.white),),
+              const SizedBox(height: 230,),
+              const Text("Temperature",style: TextStyle(fontFamily: "InterSemiBold",fontWeight: FontWeight.w800,fontSize: 45,color: Colors.white),),
+              const SizedBox(height: 20,),
+              const Text("Temperature details",style: TextStyle(fontFamily: "InterRegular",fontWeight: FontWeight.w500,fontSize: 25,color: Colors.white),),
+              const SizedBox(height: 30,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
+                  Container(
+                    child: const Column(
+                      children: [
+                        Icon(Icons.thermostat,color: Colors.white,size: 35,),
+                        SizedBox(height: 6,),
+                        Text("Value"),
+                        SizedBox(height: 6,),
+                        Text("Feels like"),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    child: const Column(
+                      children: [
+                        Icon(Icons.water_drop_outlined,color: Colors.white,size: 35,),
+                        SizedBox(height: 6,),
+                        Text("Value"),
+                        SizedBox(height: 6,),
+                        Text("Feels like"),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    child: const Column(
+                      children: [
+                        Icon(Icons.air,color: Colors.white,size: 35,),
+                        SizedBox(height: 6,),
+                        Text("Value"),
+                        SizedBox(height: 6,),
+                        Text("Feels like"),
+                      ],
+                    ),
+                  ),
                 ],
               )
             ],
