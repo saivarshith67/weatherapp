@@ -1,24 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:weatherapp/DailyWeatherServices.dart';
 import 'package:weatherapp/GetCurrentWeatherDetails.dart';
 import 'LocationDetails.dart';
 import 'coloursAndStyles.dart';
+import 'dart:math';
 
 class WeatherDetailsWidget extends StatefulWidget {
   final BuildContext context;
-  WeatherDetailsWidget({super.key, required this.context});
+  const WeatherDetailsWidget({super.key, required this.context});
 
   @override
   State<WeatherDetailsWidget> createState() => _WeatherDetailsWidgetState();
 }
 
 class _WeatherDetailsWidgetState extends State<WeatherDetailsWidget> {
-  double temp = 0;
-  double feelsLike = 0;
-  double humidity = 0;
+  String time = "";
+  double tempMax = 0;
+  double tempMin = 0;
+  double precipitationProbability = 0;
   double windSpeed = 0;
   String description = "";
   Position? position;
+  double? latitude = 0;
+  double? longitude = 0;
+  Map<String,dynamic> map = {};
+
+  // _WeatherDetailsWidgetState({required this.context});
+
+
 
 
   @override
@@ -32,6 +42,22 @@ class _WeatherDetailsWidgetState extends State<WeatherDetailsWidget> {
     // Update the state variables with the fetched data
     // position = DeterminePosition().determinePosition(context)
     // CurrentWeatherServices().fetchCurrentWeatherDetails();
+    position = await DeterminePosition().determinePosition(context);
+    latitude = position?.latitude;
+    longitude = position?.longitude;
+    latitude = 10.732;
+    longitude = 79.0151;
+    map = await DailyWeatherServices(latitude: latitude,longitude: longitude).fetchDailyWeatherDetails();
+
+    tempMax = map['temperature2mMax']?[0];
+    tempMin = map['temperature2mMin']?[0];
+    precipitationProbability = map['precipitationProbabilityMax']?[0];
+    windSpeed = map['windSpeed10mMax']?[0];
+
+
+
+
+
     setState(() {
       // Update state to trigger a rebuild
     });
@@ -40,9 +66,13 @@ class _WeatherDetailsWidgetState extends State<WeatherDetailsWidget> {
 
   @override
   Widget build(BuildContext context) {
+    // print("Build method called\n\n\n\n\n\n\n\n");
+    final size = MediaQuery.of(context).size;
+    double width = size.width;
+    double height = size.height;
     return  SizedBox(
-      height: 550,
-      width: 700,
+      height: height * 0.65,
+      width: width,
 
       child: Expanded(
         child: Container(
@@ -56,15 +86,14 @@ class _WeatherDetailsWidgetState extends State<WeatherDetailsWidget> {
           ),
           child: Column(
             children: [
-              const Text(
-                  "Date",
+              Text(
+                  "$time",
                   style: TextStyle(fontFamily: "InterSemiBold",color: Colors.white, fontSize: 15.0),
               ),
               //Icon
               const SizedBox(height: 230,),
-              const Text("Temperature",style: TextStyle(fontFamily: "InterSemiBold",fontWeight: FontWeight.w800,fontSize: 45,color: Colors.white),),
+              Text("$tempMax°C",style: HeadingStyle().toTextStyle(),),
               const SizedBox(height: 20,),
-              const Text("Temperature details",style: TextStyle(fontFamily: "InterRegular",fontWeight: FontWeight.w500,fontSize: 25,color: Colors.white),),
               const SizedBox(height: 30,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -74,9 +103,9 @@ class _WeatherDetailsWidgetState extends State<WeatherDetailsWidget> {
                       children: [
                         const Icon(Icons.thermostat,color: Colors.white,size: 35,),
                         const SizedBox(height: 6,),
-                        Text("$feelsLike", style: const TextStyle(fontFamily: "InterRegular",color: Colors.white, fontWeight: FontWeight.w600),),
+                        Text("$tempMin°C", style:  RegularStyle().toTextStyle(),),
                         const SizedBox(height: 6,),
-                        const Text("Feels like", style: TextStyle(fontFamily: "InterRegular",color: Colors.white, fontWeight: FontWeight.w600),),
+                        Text("Temp min.", style: RegularStyle().toTextStyle(),),
                       ],
                     ),
                   ),
@@ -85,20 +114,20 @@ class _WeatherDetailsWidgetState extends State<WeatherDetailsWidget> {
                       children: [
                         const Icon(Icons.water_drop_outlined,color: Colors.white,size: 35,),
                         const SizedBox(height: 6,),
-                        Text("$windSpeed"),
+                        Text("$precipitationProbability%", style: RegularStyle().toTextStyle(),),
                         const SizedBox(height: 6,),
-                        const Text("Feels like"),
+                        Text("Rain", style: RegularStyle().toTextStyle(),),
                       ],
                     ),
                   ),
                   Container(
-                    child: const Column(
+                    child: Column(
                       children: [
-                        Icon(Icons.air,color: Colors.white,size: 35,),
-                        SizedBox(height: 6,),
-                        Text("Value"),
-                        SizedBox(height: 6,),
-                        Text("Feels like"),
+                        const Icon(Icons.air,color: Colors.white,size: 35,),
+                        const SizedBox(height: 6,),
+                        Text("$windSpeed", style: RegularStyle().toTextStyle(),),
+                        const SizedBox(height: 6,),
+                        Text("Wind", style: RegularStyle().toTextStyle(),),
                       ],
                     ),
                   ),

@@ -6,6 +6,7 @@ import 'package:weatherapp/coloursAndStyles.dart';
 
 
 
+
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
 
@@ -33,6 +34,9 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         leading: TextButton(child: const Icon(Icons.more_vert_rounded,color: Colors.white), onPressed: () {},),
         actions: [
+          IconButton(onPressed: (){setState(() {
+
+          });}, icon: const Icon(Icons.refresh_rounded, color: Colors.white,)),
           IconButton(onPressed: () {}, icon: const Icon(Icons.add, color: Colors.white,)),
         ],
 

@@ -8,18 +8,6 @@ class DeterminePosition{
   Future<Position> determinePosition(BuildContext context) async {
     bool serviceEnabled;
     LocationPermission permission;
-    // var os;
-    // os = Platform.operatingSystem;
-    // ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("$os")));
-
-    // print(Platform.isAndroid);
-    //
-    // if(Platform.isAndroid){
-    //   Geolocator.openLocationSettings();
-    //   Geolocator.openAppSettings();
-    //   await Geolocator.checkPermission();
-    //   await Geolocator.requestPermission();
-    // }
 
 
 
@@ -30,7 +18,10 @@ class DeterminePosition{
       // Location services are not enabled don't continue
       // accessing the position and request users of the
       // App to enable the location services.
+      Geolocator.openLocationSettings();
+      // Geolocator.openAppSettings();
       return Future.error('Location services are disabled.');
+
     }
 
     permission = await Geolocator.checkPermission();
