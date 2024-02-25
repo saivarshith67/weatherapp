@@ -70,8 +70,7 @@ class DailyWeatherServices {
     final response = await http.get(url);
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
-      print(data);
-      final Map<String, dynamic> map = {
+      final Map<String, dynamic> mapDaily = {
         'time': <String>[],
         'weatherCode': <int>[],
         'temperature2mMax': <double>[],
@@ -83,26 +82,22 @@ class DailyWeatherServices {
         'windSpeed10mMax': <double>[],
       };
 
-      map['time'] = DailyWeatherData.fromJson(data).time;
-      map['weatherCode'] = DailyWeatherData.fromJson(data).weatherCode;
-      map['temperature2mMax'] =
-          DailyWeatherData.fromJson(data).temperature2mMax;
+      var dailyWeatherData = DailyWeatherData.fromJson(data);
 
-      map['temperature2mMin'] =
-          DailyWeatherData.fromJson(data).temperature2mMin;
+      mapDaily['time'] = dailyWeatherData.time;
+      mapDaily['weatherCode'] = dailyWeatherData.weatherCode;
+      mapDaily['temperature2mMax'] = dailyWeatherData.temperature2mMax;
+      mapDaily['temperature2mMin'] = dailyWeatherData.temperature2mMin;
+      mapDaily['uvIndexMax'] = dailyWeatherData.uvIndexMax;
+      mapDaily['uvIndexClearSkyMax'] = dailyWeatherData.uvIndexClearSkyMax;
+      mapDaily['precipitationHours'] = dailyWeatherData.precipitationHours;
+      mapDaily['precipitationProbabilityMax'] =
+          dailyWeatherData.precipitationProbabilityMax;
+      mapDaily['windSpeed10mMax'] = dailyWeatherData.windSpeed10mMax;
 
-      map['uvIndexMax'] = DailyWeatherData.fromJson(data).uvIndexMax;
-      map['uvIndexClearSkyMax'] =
-          DailyWeatherData.fromJson(data).uvIndexClearSkyMax;
-      map['precipitationHours'] =
-          DailyWeatherData.fromJson(data).precipitationHours;
-      map['precipitationProbabilityMax'] =
-          DailyWeatherData.fromJson(data).precipitationProbabilityMax;
-      map['windSpeed10mMax'] = DailyWeatherData.fromJson(data).windSpeed10mMax;
+      print(mapDaily);
 
-      print(map);
-
-      return map;
+      return mapDaily;
     } else {
       throw Exception("Failed to Fetch data ${response.statusCode}");
     }

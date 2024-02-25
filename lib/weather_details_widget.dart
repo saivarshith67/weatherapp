@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:weatherapp/daily_weather_services.dart';
+import 'package:weatherapp/weather_services.dart';
 import 'location_details.dart';
 import 'colours_and_text_styles.dart';
 
@@ -23,7 +23,7 @@ class _WeatherDetailsWidgetState extends State<WeatherDetailsWidget> {
   Position? position;
   double? latitude = 0;
   double? longitude = 0;
-  Map<String, dynamic> map = {};
+  var map = {};
 
   @override
   void initState() {
@@ -46,8 +46,11 @@ class _WeatherDetailsWidgetState extends State<WeatherDetailsWidget> {
 
     tempMax = map['temperature2mMax']?[0];
     tempMin = map['temperature2mMin']?[0];
-    precipitationProbability = map['precipitationProbabilityMax']?[0];
+    precipitationProbability =
+        map['precipitationProbabilityMax']?[0];
     windSpeed = map['windSpeed10mMax']?[0];
+
+
 
     setState(() {
       // Update state to trigger a rebuild
@@ -56,7 +59,6 @@ class _WeatherDetailsWidgetState extends State<WeatherDetailsWidget> {
 
   @override
   Widget build(BuildContext context) {
-    // print("Build method called\n\n\n\n\n\n\n\n");
     final size = MediaQuery.of(context).size;
     double width = size.width;
     double height = size.height;
