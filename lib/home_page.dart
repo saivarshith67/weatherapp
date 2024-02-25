@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:weatherapp/frosted_glass_widget.dart';
-import 'package:weatherapp/weather_details_widget.dart';
+import 'package:weatherapp/daily_weather_details_widget.dart';
 import 'package:weatherapp/colours_and_text_styles.dart';
+import 'package:weatherapp/hourly_weather_details_widget.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -64,7 +65,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 shrinkWrap: true,
                 itemBuilder: (context, index) => Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: FrostedGlassWidget(),
+                      child: FrostedGlassWidget(
+                        child: HourlyWeatherDetailsWidget(index: index),
+                      ),
                     )),
           )
         ],

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:weatherapp/weather_services.dart';
+import 'package:weatherapp/daily_weather_services.dart';
 import 'location_details.dart';
 import 'colours_and_text_styles.dart';
 

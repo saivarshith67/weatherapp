@@ -4,15 +4,17 @@ import 'package:flutter/material.dart';
 class FrostedGlassWidget extends StatelessWidget {
   final double height;
   final double width;
+  final Widget child;
 
   FrostedGlassWidget({
     this.width = 100,
     this.height = 150,
+    required this.child
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: width,
       height: height,
       child: ClipRect(
@@ -41,6 +43,7 @@ class FrostedGlassWidget extends StatelessWidget {
                         ])),
               ),
               //child
+              child
             ],
           ),
         ),
