@@ -42,7 +42,7 @@ class _WeatherDetailsWidgetState extends State<WeatherDetailsWidget> {
     map = await DailyWeatherServices(latitude: latitude, longitude: longitude)
         .fetchDailyWeatherDetails();
 
-    print(map);
+    // print(map);
 
     tempMax = map['temperature2mMax']?[0];
     tempMin = map['temperature2mMin']?[0];

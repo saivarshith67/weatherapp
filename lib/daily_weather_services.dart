@@ -95,7 +95,7 @@ class DailyWeatherServices {
           dailyWeatherData.precipitationProbabilityMax;
       mapDaily['windSpeed10mMax'] = dailyWeatherData.windSpeed10mMax;
 
-      print(mapDaily);
+      // print(mapDaily);
 
       return mapDaily;
     } else {

@@ -13,7 +13,8 @@ class HourlyWeatherDetailsWidget extends StatefulWidget {
       _HourlyWeatherDetailsWidgetState();
 }
 
-class _HourlyWeatherDetailsWidgetState extends State<HourlyWeatherDetailsWidget> {
+class _HourlyWeatherDetailsWidgetState
+    extends State<HourlyWeatherDetailsWidget> {
   String time = "time";
   double temperature = 0.0;
   int precipitationProbability = 0;
@@ -24,50 +25,56 @@ class _HourlyWeatherDetailsWidgetState extends State<HourlyWeatherDetailsWidget>
   var map = {};
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
-    _callWeatherAPI(context);
+    // _callWeatherAPI(context);
     _fetchHourlyWeatherData();
     setState(() {});
   }
 
-  _callWeatherAPI(BuildContext context) async
-  {
+  // _callWeatherAPI(BuildContext context) async
+  // {
+  //   position = await DeterminePosition().determinePosition(context);
+  //   latitude = position?.latitude;
+  //   longitude = position?.longitude;
+  //   map = await HourlyWeatherServices(longitude: longitude,latitude: latitude).fetchHourlyWeatherDetails();
+  // }
+
+  _fetchHourlyWeatherData() async {
     position = await DeterminePosition().determinePosition(context);
     latitude = position?.latitude;
     longitude = position?.longitude;
-    map = await HourlyWeatherServices(longitude: longitude,latitude: latitude).fetchHourlyWeatherDetails();
-  }
-
-  _fetchHourlyWeatherData() async {
+    map = await HourlyWeatherServices(longitude: longitude, latitude: latitude)
+        .fetchHourlyWeatherDetails();
 
     reqIndex = widget.index;
 
-    print("Hourly Weather Details");
-    print(map);
-
     time = map['time']?[reqIndex];
+    time = time.substring(11, 16);
     precipitationProbability = map['precipitationProbability']?[reqIndex];
     temperature = map['temperature']?[reqIndex];
+    print(time);
+    print(precipitationProbability);
+    print(temperature);
 
-
-
-
-
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
-
     return Center(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Text(time),
-          const SizedBox(height: 15,),
+          const SizedBox(
+            height: 15,
+          ),
           Text(precipitationProbability.toString()),
-          const SizedBox(height: 15,),
+          const SizedBox(
+            height: 15,
+          ),
           Text(temperature.toString()),
         ],
       ),

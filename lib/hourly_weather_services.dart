@@ -78,7 +78,7 @@ class HourlyWeatherServices {
       mapHourly['weatherCode'] = hourlyWeatherData.weatherCode;
       mapHourly['isDay'] = hourlyWeatherData.isDay;
 
-      print(mapHourly);
+      // print(mapHourly);
 
       return mapHourly;
     } else {
