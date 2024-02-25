@@ -9,7 +9,7 @@ class DailyWeatherData {
   final List<double> uvIndexMax;
   final List<double> uvIndexClearSkyMax;
   final List<double> precipitationHours;
-  final List<double> precipitationProbabilityMax;
+  final List<int> precipitationProbabilityMax;
   final List<double> windSpeed10mMax;
 
   const DailyWeatherData({
@@ -25,17 +25,23 @@ class DailyWeatherData {
   });
 
   factory DailyWeatherData.fromJson(Map<String, dynamic> json) {
-
-
     final List<String> time = (json['daily']['time'] as List).cast<String>();
-    final List<int> weatherCode = (json['daily']['weather_code'] as List).cast<int>();
-    final List<double> temperature2mMax = (json['daily']['temperature_2m_max'] as List).cast<double>();
-    final List<double> temperature2mMin = (json['daily']['temperature_2m_min'] as List).cast<double>();
-    final List<double> uvIndexMax = (json['daily']['uv_index_max'] as List).cast<double>();
-    final List<double> uvIndexClearSkyMax = (json['daily']['uv_index_clear_sky_max'] as List).cast<double>();
-    final List<double> precipitationHours = (json['daily']['precipitation_hours'] as List).cast<double>();
-    final List<double> precipitationProbabilityMax = (json['daily']['precipitation_probability_max'] as List).cast<double>();
-    final List<double> windSpeed10mMax = (json['daily']['wind_speed_10m_max'] as List).cast<double>();
+    final List<int> weatherCode =
+        (json['daily']['weather_code'] as List).cast<int>();
+    final List<double> temperature2mMax =
+        (json['daily']['temperature_2m_max'] as List).cast<double>();
+    final List<double> temperature2mMin =
+        (json['daily']['temperature_2m_min'] as List).cast<double>();
+    final List<double> uvIndexMax =
+        (json['daily']['uv_index_max'] as List).cast<double>();
+    final List<double> uvIndexClearSkyMax =
+        (json['daily']['uv_index_clear_sky_max'] as List).cast<double>();
+    final List<double> precipitationHours =
+        (json['daily']['precipitation_hours'] as List).cast<double>();
+    final List<int> precipitationProbabilityMax =
+        (json['daily']['precipitation_probability_max'] as List).cast<int>();
+    final List<double> windSpeed10mMax =
+        (json['daily']['wind_speed_10m_max'] as List).cast<double>();
 
     return DailyWeatherData(
       time: time,
@@ -51,7 +57,7 @@ class DailyWeatherData {
   }
 }
 
-class DailyWeatherServices{
+class DailyWeatherServices {
   final double? latitude;
   final double? longitude;
 
@@ -64,30 +70,37 @@ class DailyWeatherServices{
     final response = await http.get(url);
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
+      print(data);
       final Map<String, dynamic> map = {
-        'time' : <String>[],
-        'weatherCode' : <int>[],
-        'temperature2mMax' : <double>[],
-        'temperature2mMin' : <double>[],
-        'uvIndexMax' : <double>[],
-        'uvIndexClearSkyMax' : <double>[],
-        'precipitationHours' : <double>[],
-        'precipitationProbabilityMax' : <int>[],
-        'windSpeed10mMax' : <double>[],
+        'time': <String>[],
+        'weatherCode': <int>[],
+        'temperature2mMax': <double>[],
+        'temperature2mMin': <double>[],
+        'uvIndexMax': <double>[],
+        'uvIndexClearSkyMax': <double>[],
+        'precipitationHours': <double>[],
+        'precipitationProbabilityMax': <int>[],
+        'windSpeed10mMax': <double>[],
       };
 
       map['time'] = DailyWeatherData.fromJson(data).time;
       map['weatherCode'] = DailyWeatherData.fromJson(data).weatherCode;
-      map['temperature2mMax'] = DailyWeatherData.fromJson(data).temperature2mMax;
-      map['temperature2mMin'] = DailyWeatherData.fromJson(data).temperature2mMin;
+      map['temperature2mMax'] =
+          DailyWeatherData.fromJson(data).temperature2mMax;
+
+      map['temperature2mMin'] =
+          DailyWeatherData.fromJson(data).temperature2mMin;
+
       map['uvIndexMax'] = DailyWeatherData.fromJson(data).uvIndexMax;
-      map['uvIndexClearSkyMax'] = DailyWeatherData.fromJson(data).uvIndexClearSkyMax;
-      map['precipitationHours'] = DailyWeatherData.fromJson(data).precipitationHours;
-      map['precipitationProbabilityMax'] = DailyWeatherData.fromJson(data).precipitationProbabilityMax;
+      map['uvIndexClearSkyMax'] =
+          DailyWeatherData.fromJson(data).uvIndexClearSkyMax;
+      map['precipitationHours'] =
+          DailyWeatherData.fromJson(data).precipitationHours;
+      map['precipitationProbabilityMax'] =
+          DailyWeatherData.fromJson(data).precipitationProbabilityMax;
       map['windSpeed10mMax'] = DailyWeatherData.fromJson(data).windSpeed10mMax;
 
       print(map);
-
 
       return map;
     } else {
@@ -95,4 +108,3 @@ class DailyWeatherServices{
     }
   }
 }
-

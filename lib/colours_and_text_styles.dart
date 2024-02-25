@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class ColourPalette{
+class ColourPalette {
   final blue = const Color(0x903abfff);
   final lightBlue = const Color(0x90a8edfc);
   final darkBlue = const Color(0x902d3eb0);
@@ -9,7 +9,7 @@ class ColourPalette{
   final darkViolet = const Color(0x908a80b4);
 }
 
-class HeadingStyle{
+class HeadingStyle {
   final double fontSize;
   final FontWeight fontWeight;
   final Color color;
@@ -32,7 +32,7 @@ class HeadingStyle{
   }
 }
 
-class RegularStyle{
+class RegularStyle {
   final double fontSize;
   final FontWeight fontWeight;
   final Color color;
@@ -54,5 +54,3 @@ class RegularStyle{
     );
   }
 }
-
-

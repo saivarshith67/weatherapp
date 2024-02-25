@@ -13,13 +13,13 @@ class CurrentWeatherDetails {
 
   CurrentWeatherDetails(
       {required this.temperature2m,
-        required this.relativeHumidity2m,
-        required this.apparentTemperature,
-        required this.isDay,
-        required this.precipitation,
-        required this.rain,
-        required this.cloudCover,
-        required this.windSpeed10m});
+      required this.relativeHumidity2m,
+      required this.apparentTemperature,
+      required this.isDay,
+      required this.precipitation,
+      required this.rain,
+      required this.cloudCover,
+      required this.windSpeed10m});
 
   factory CurrentWeatherDetails.fromJson(Map<String, dynamic> json) {
     return CurrentWeatherDetails(
@@ -66,8 +66,6 @@ class CurrentWeatherServices {
       map['rain'] = data['current']['rain'];
       map['cloudCover'] = data['current']['cloud_cover'];
       map['windSpeed10m'] = data['current']['wind_speed_10m'];
-
-
 
       return map;
     } else {

@@ -1,16 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-import "dart:io" show Platform;
 
-
-class DeterminePosition{
-
+class DeterminePosition {
   Future<Position> determinePosition(BuildContext context) async {
     bool serviceEnabled;
     LocationPermission permission;
-
-
-
 
     // Test if location services are enabled.
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
@@ -21,7 +15,6 @@ class DeterminePosition{
       Geolocator.openLocationSettings();
       // Geolocator.openAppSettings();
       return Future.error('Location services are disabled.');
-
     }
 
     permission = await Geolocator.checkPermission();
@@ -45,6 +38,7 @@ class DeterminePosition{
 
     // When we reach here, permissions are granted and we can
     // continue accessing the position of the device.
-    return await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+    return await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
   }
 }
