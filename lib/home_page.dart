@@ -3,6 +3,7 @@ import 'package:weatherapp/frosted_glass_widget.dart';
 import 'package:weatherapp/daily_weather_details_widget.dart';
 import 'package:weatherapp/colours_and_text_styles.dart';
 import 'package:weatherapp/hourly_weather_details_widget.dart';
+import 'daily_weather_details_widget.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -14,6 +15,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: ColourPalette().blue.withOpacity(1),

@@ -22,23 +22,15 @@ class _HourlyWeatherDetailsWidgetState
   double? longitude = 0;
   Position? position;
   int reqIndex = 0;
+  int isDay = 0;
   var map = {};
 
   @override
   void initState() {
     super.initState();
-    // _callWeatherAPI(context);
     _fetchHourlyWeatherData();
     setState(() {});
   }
-
-  // _callWeatherAPI(BuildContext context) async
-  // {
-  //   position = await DeterminePosition().determinePosition(context);
-  //   latitude = position?.latitude;
-  //   longitude = position?.longitude;
-  //   map = await HourlyWeatherServices(longitude: longitude,latitude: latitude).fetchHourlyWeatherDetails();
-  // }
 
   _fetchHourlyWeatherData() async {
     position = await DeterminePosition().determinePosition(context);
@@ -53,6 +45,7 @@ class _HourlyWeatherDetailsWidgetState
     time = time.substring(11, 16);
     precipitationProbability = map['precipitationProbability']?[reqIndex];
     temperature = map['temperature']?[reqIndex];
+
     print(time);
     print(precipitationProbability);
     print(temperature);
