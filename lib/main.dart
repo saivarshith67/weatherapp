@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:weatherapp/colours_and_text_styles.dart';
 import 'package:weatherapp/home_page.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -18,8 +20,8 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: ColourPalette().blue),
           useMaterial3: true,
           fontFamily: 'InterRegular'),
-      home: MyHomePage(),
-      debugShowCheckedModeBanner: false,
+      home: const MyHomePage(),
+      debugShowCheckedModeBanner: true,
     );
   }
 }
