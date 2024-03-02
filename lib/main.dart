@@ -4,6 +4,7 @@ import 'package:weatherapp/colours_and_text_styles.dart';
 import 'package:weatherapp/home_page.dart';
 import 'package:weatherapp/weather_details_provider.dart';
 
+
 void main() {
   runApp(const MyApp());
 }
