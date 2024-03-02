@@ -66,6 +66,7 @@ class DailyWeatherServices {
   Future<Map<String, dynamic>> fetchDailyWeatherDetails() async {
     String requrl =
         "https://api.open-meteo.com/v1/forecast?latitude=$latitude&longitude=$longitude&hourly=temperature_2m,relative_humidity_2m,precipitation_probability,rain,weather_code,is_day&daily=weather_code,temperature_2m_max,temperature_2m_min,uv_index_max,uv_index_clear_sky_max,precipitation_hours,precipitation_probability_max,wind_speed_10m_max&timezone=auto&forecast_days=3&forecast_hours=24";
+
     final url = Uri.parse(requrl);
     final response = await http.get(url);
     if (response.statusCode == 200) {
