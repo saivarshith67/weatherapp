@@ -22,6 +22,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+
     print("Build Called");
     final provider = Provider.of<WeatherDetailsProvider>(context, listen: false);
     provider.fetchLocationDetails(context);
@@ -30,9 +31,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
     provider.fetchHourlyWeatherData();
 
-    print(provider.mapHourly);
 
-    print(provider.mapDaily);
+
 
 
 
@@ -58,7 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
           actions: [
             IconButton(
                 onPressed: () {
-                  initState();
+                  build(context);
                 },
                 icon: const Icon(
                   Icons.refresh_rounded,

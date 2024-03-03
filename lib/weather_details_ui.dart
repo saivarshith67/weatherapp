@@ -27,8 +27,7 @@ class CoreUI extends StatelessWidget {
               itemBuilder: (context, index) => Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: FrostedGlassWidget(
-                  child: const Center(child: Text("Hello Word")),
-                  // child: HourlyWeatherDetailsWidget(index: index),
+                  child: HourlyWeatherDetailsWidget(index: index),
                 ),
               )),
         )

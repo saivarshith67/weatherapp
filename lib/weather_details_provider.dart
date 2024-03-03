@@ -21,7 +21,7 @@ class WeatherDetailsProvider extends ChangeNotifier {
 
   //Hourly Weather Variables
   List<String> time = ['time'];
-  List<double> precipitationProbability = [0.0];
+  List<int> precipitationProbability = [0];
   List<double> temperature = [0.0];
 
   Map<String, dynamic> mapDaily = {
@@ -56,6 +56,8 @@ class WeatherDetailsProvider extends ChangeNotifier {
 
     isLoading = false;
     notifyListeners();
+
+    print("$latitude $longitude");
   }
 
   Future<void> fetchDailyWeatherData() async {
@@ -66,15 +68,19 @@ class WeatherDetailsProvider extends ChangeNotifier {
         await DailyWeatherServices(latitude: latitude, longitude: longitude)
             .fetchDailyWeatherDetails();
 
-    isLoading = false;
-    notifyListeners();
-
     tempMax = mapDaily['temperature2mMax']?[0];
     tempMin = mapDaily['temperature2mMin']?[0];
     precipitationProbabilityDaily = mapDaily['precipitationProbabilityMax']?[0];
     windSpeed = mapDaily['windSpeed10mMax']?[0];
-    notifyListeners();
 
+    print(mapDaily.toString());
+    print(tempMax.toString());
+    print(tempMin.toString());
+    print(precipitationProbabilityDaily.toString());
+    print(windSpeed.toString());
+
+    isLoading = false;
+    notifyListeners();
   }
 
   Future<void> fetchHourlyWeatherData() async {
@@ -85,18 +91,19 @@ class WeatherDetailsProvider extends ChangeNotifier {
         await HourlyWeatherServices(longitude: longitude, latitude: latitude)
             .fetchHourlyWeatherDetails();
 
-
-
-
-    isLoading = false;
-    notifyListeners();
-
     time = mapHourly['time'];
     for (int i = 0; i < time.length; i++) {
       time[i] = time[i].substring(11, 16);
     }
     precipitationProbability = mapHourly['precipitationProbability'];
     temperature = mapHourly['temperature'];
+
+    print(mapHourly.toString());
+    print(time.toString());
+    print(precipitationProbability.toString());
+    print(temperature.toString());
+
+    isLoading = false;
 
     notifyListeners();
   }

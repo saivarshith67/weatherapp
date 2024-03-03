@@ -40,8 +40,8 @@ class _WeatherDetailsWidgetState extends State<WeatherDetailsWidget> {
             child: Column(
               children: [
                 Text(
-                  "Time",
-                  // dailyWeatherDetails.mapDaily['time']?[0],
+                  // "Time",
+                  dailyWeatherDetails.time[0].toString(),
                   style: const TextStyle(
                       fontFamily: "InterSemiBold",
                       color: Colors.white,
@@ -52,8 +52,8 @@ class _WeatherDetailsWidgetState extends State<WeatherDetailsWidget> {
                   height: 230,
                 ),
                 Text(
-                  "tempMax°C",
-                  // "${dailyWeatherDetails.tempMax}°C",
+                  // "tempMax°C",
+                  "${dailyWeatherDetails.tempMax}°C",
                   style: HeadingStyle().toTextStyle(),
                 ),
                 const SizedBox(
@@ -77,8 +77,8 @@ class _WeatherDetailsWidgetState extends State<WeatherDetailsWidget> {
                             height: 6,
                           ),
                           Text(
-                            "",
-                            // "${dailyWeatherDetails.tempMin}°C",
+                            // "",
+                            "${dailyWeatherDetails.tempMin}°C",
                             style: RegularStyle().toTextStyle(),
                           ),
                           const SizedBox(
@@ -103,8 +103,8 @@ class _WeatherDetailsWidgetState extends State<WeatherDetailsWidget> {
                             height: 6,
                           ),
                           Text(
-                            "",
-                            // "${dailyWeatherDetails.precipitationProbabilityDaily}%",
+                            // "",
+                            "${dailyWeatherDetails.precipitationProbabilityDaily}%",
                             style: RegularStyle().toTextStyle(),
                           ),
                           const SizedBox(
@@ -129,8 +129,8 @@ class _WeatherDetailsWidgetState extends State<WeatherDetailsWidget> {
                             height: 6,
                           ),
                           Text(
-                            "",
-                            // "${dailyWeatherDetails.windSpeed} kmph",
+                            // "",
+                            "${dailyWeatherDetails.windSpeed} kmph",
                             style: RegularStyle().toTextStyle(),
                           ),
                           const SizedBox(
