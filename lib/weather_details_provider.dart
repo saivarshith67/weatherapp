@@ -1,5 +1,8 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:weatherapp/colours_and_text_styles.dart';
 import 'package:weatherapp/location_details.dart';
 import 'daily_weather_services.dart';
 import 'hourly_weather_services.dart';
@@ -23,6 +26,7 @@ class WeatherDetailsProvider extends ChangeNotifier {
   List<String> time = ['time'];
   List<int> precipitationProbability = [0];
   List<double> temperature = [0.0];
+  List<int> isDay = [0];
 
   Map<String, dynamic> mapDaily = {
     'time': <String>[],
@@ -45,6 +49,13 @@ class WeatherDetailsProvider extends ChangeNotifier {
     'weatherCode': <int>[],
     'isDay': <int>[],
   };
+  var colourPalette = ColourPalette();
+  Color colourPaletteForeground = Colors.white;
+  Color colourPaletteBackground = Colors.white;
+
+  String dailyWeatherImagePath = "";
+  String hourlyWeatherImagePath = "";
+
 
   Future<void> fetchLocationDetails(BuildContext context) async {
     isLoading = true;
@@ -97,6 +108,7 @@ class WeatherDetailsProvider extends ChangeNotifier {
     }
     precipitationProbability = mapHourly['precipitationProbability'];
     temperature = mapHourly['temperature'];
+    isDay = mapHourly['isDay'];
 
     print(mapHourly.toString());
     print(time.toString());
@@ -104,6 +116,28 @@ class WeatherDetailsProvider extends ChangeNotifier {
     print(temperature.toString());
 
     isLoading = false;
+
+    notifyListeners();
+  }
+
+  void setColour() {
+    if (temperature[0] >= 20.0 && isDay[0] == 1) {
+      colourPaletteForeground = colourPalette.blue.withOpacity(1.0);
+      colourPaletteBackground = colourPalette.lightBlue.withOpacity(1.0);
+    } else if (temperature[0] < 20 && isDay[0] == 1) {
+      colourPaletteForeground = colourPalette.darkBlue.withOpacity(1.0);
+      colourPaletteBackground = colourPalette.blue.withOpacity(1.0);
+    } else {
+      colourPaletteForeground = colourPalette.darkViolet.withOpacity(0.9);
+      colourPaletteBackground = Colors.grey.shade300;
+    }
+    notifyListeners();
+  }
+
+  void setDailyWeatherIcon(){
+    if(tempMax >= 25.0 && isDay[0] == 1 && precipitationProbabilityDaily >= 85){
+      dailyWeatherImagePath = "assets/weather_icons_pack/day_rain.svg";
+    }
 
     notifyListeners();
   }

@@ -31,6 +31,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
     provider.fetchHourlyWeatherData();
 
+    provider.setColour();
+
+    provider.setDailyWeatherIcon();
+
 
 
 
@@ -42,7 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
       builder: (context, value, child) => Scaffold(
         appBar: AppBar(
-          backgroundColor: ColourPalette().blue.withOpacity(1),
+          backgroundColor: value.colourPaletteForeground,
           title: const Text(
             "Weather App",
             style: TextStyle(
@@ -73,7 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
           centerTitle: true,
         ),
-        backgroundColor: ColourPalette().lightBlue.withOpacity(1.0),
+        backgroundColor: value.colourPaletteBackground,
         body: provider.isLoading ? const LoadingScreen() : const CoreUI(),
       ),
     );
